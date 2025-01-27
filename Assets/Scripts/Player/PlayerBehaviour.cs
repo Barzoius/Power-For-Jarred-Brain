@@ -29,16 +29,16 @@ public class PlayerBehaviour : MonoBehaviour
 
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
-        //if (Input.GetButtonDown("Jump"))
-        //{
+        if (Input.GetButtonDown("Jump"))
+        {
 
-        //    rb.velocity = new Vector2(move * speed, rb.velocity.y);
+            //rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
-        //    if (power > 0)
-        //    { 
-        //        rb.AddForce(new Vector2(rb.velocity.x , jump));
-        //        power -= 20;
-        //    }
-        //}
+            if (power > 0)
+            {
+                rb.AddForce(new Vector2(rb.velocity.x, jump));
+                power -= 20;
+            }
+        }
     }
 }

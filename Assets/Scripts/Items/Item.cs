@@ -9,6 +9,17 @@ public class Item : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    private bool pickable = false;
+
+    public void ChangePickable()
+    {
+        pickable = !pickable;
+    }
+    public bool GetPickable()
+    {
+        return pickable;
+    }
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -16,16 +27,39 @@ public class Item : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (pickable && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("ADSDAS");
+            PickUp();
+        }
+    }
+
     public virtual void PickUp()
     {
-        Debug.Log("PickUp");
+
+        Destroy(gameObject);
+        DisableItemPrompt();
+    }
+
+    public virtual void ShowPrompt()
+    {
         if (PickUpController.Instance != null)
         {
-            Debug.Log("PickUp");
-            PickUpController.Instance.ShowItemPrompt(scriptableItem.name, 
+            PickUpController.Instance.ShowItemPrompt(scriptableItem.name,
                                                      scriptableItem.description,
                                                      scriptableItem.spriteImg);
         }
     }
+
+    public virtual void DisableItemPrompt()
+    {
+        if (PickUpController.Instance != null)
+        {
+            PickUpController.Instance.DisablePrompt();
+        }
+    }
+
 
 }

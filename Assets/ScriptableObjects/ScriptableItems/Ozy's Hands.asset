@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Ozy's Hands
   m_EditorClassIdentifier: 
   name: Ozy's Arms
-  description: ARMS ARMS
+  description: Nothing interesting about them. Should probably bring them to him
   spriteImg: {fileID: 1262580293, guid: 8506b8c3d61070641bcbd0a7a04a03f1, type: 3}
-  prompt: {fileID: 0}

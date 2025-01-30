@@ -17,6 +17,7 @@ public class PlayerItemPickUp : MonoBehaviour
             
             if(item != null)
             {
+                Debug.Log("In range from prompt");
                 item.ChangePickable();
                 item.ShowPrompt();
             }
@@ -40,7 +41,6 @@ public class PlayerItemPickUp : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("DAS");
                     item.PickUp();
 
                 }

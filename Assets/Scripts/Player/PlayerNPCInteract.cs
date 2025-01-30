@@ -59,7 +59,7 @@ public class PlayerNPCInteract : MonoBehaviour
             if (npc != null)
             {
                 npc.ChangePickable();
-                npc.DisableItemPrompt();
+                npc.DisableNPCPrompt();
 
             }
         }

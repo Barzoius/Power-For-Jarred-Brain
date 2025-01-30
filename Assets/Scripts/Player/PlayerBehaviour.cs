@@ -19,6 +19,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Rigidbody2D rb;
 
+
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,16 +32,12 @@ public class PlayerBehaviour : MonoBehaviour
 
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
-        if (Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && power > 0)
         {
 
-            //rb.velocity = new Vector2(move * speed, rb.velocity.y);
-
-            if (power > 0)
-            {
-                rb.AddForce(new Vector2(rb.velocity.x, jump));
-                power -= 20;
-            }
+            rb.AddForce(new Vector2(rb.velocity.x, jump));
+            power -= 20;
         }
+
     }
 }

@@ -16,6 +16,10 @@ public class NPCsController : MonoBehaviour
 
     private GameObject activePrompt;
 
+    TMP_Text iLine;
+
+    Button nextB;
+
     public void Awake()
     {
         if (Instance == null)
@@ -26,9 +30,22 @@ public class NPCsController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
-    public void ShowNPCPrompt(string Name, string Desc, Sprite icon)
+
+
+    public Button getNextButton()
+    {
+      if(nextB != null)
+            return nextB;
+      else
+            return nextB;
+
+     
+    }
+
+    public void ShowNPCPrompt(string Name, string Desc, Sprite icon, string Line)
     {
 
         if (activePrompt == null)
@@ -42,6 +59,12 @@ public class NPCsController : MonoBehaviour
         TMP_Text iDesc = activePrompt.transform.Find("Item Description")?.GetComponent<TMP_Text>();
         Image iIcon = activePrompt.transform.Find("NPC Icon")?.GetComponent<Image>();
 
+
+        TMP_Text iLine = activePrompt.transform.Find("Dialogue")?.GetComponent<TMP_Text>();
+
+        nextB = activePrompt.transform.Find("nextButton")?.GetComponent<Button>();
+
+
         if (iIcon)
             iIcon.sprite = icon;
 
@@ -51,8 +74,29 @@ public class NPCsController : MonoBehaviour
         if (iDesc)
             iDesc.text = Desc;
 
+        if(iLine)
+            iLine.text = Line;
+
 
         activePrompt.SetActive(true);
+
+    }
+
+    public void UpdateD(string Line)
+    {
+        if (activePrompt == null)
+        {
+            activePrompt = Instantiate(npcPromptPrefab, transform);
+            activePrompt.SetActive(false);
+        }
+
+        TMP_Text iLine = activePrompt.transform.Find("Dialogue")?.GetComponent<TMP_Text>();
+
+        nextB = activePrompt.transform.Find("nextButton")?.GetComponent<Button>();
+
+        if (iLine)
+            iLine.text = Line;
+
 
     }
 
@@ -92,7 +136,9 @@ public class NPCsController : MonoBehaviour
             yield return null;
 
         }
+
         prompt.SetActive(false);
+        cg.alpha = 1f;
 
     }
 }

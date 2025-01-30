@@ -14,4 +14,6 @@ public class SNPC : ScriptableObject
     public string description;
     public Sprite spriteImg;
 
+    public int completionIndex;
+
 }

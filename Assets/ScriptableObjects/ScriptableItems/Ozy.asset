@@ -22,6 +22,9 @@ MonoBehaviour:
   - Delightful, I lost it somewhere in the West.
   - Why are you still here, go on.
   - Ooh, so you came back.
+  - Nice, I really missed these.
+  - Come on, as promised I will roll up the gate.
   name: Ozy
   description: the living cadaver
   spriteImg: {fileID: 21300000, guid: a52bda3ae12016d44901794562a72729, type: 3}
+  completionIndex: 8

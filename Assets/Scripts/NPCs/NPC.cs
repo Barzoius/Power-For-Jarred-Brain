@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class NPC : MonoBehaviour
 
 
     private List<string> dialogues = new List<string>();
+
+    string currentLine;
+
+    int currentIndex = 0;
+
+    private Button nextB;
 
     public void ChangePickable()
     {
@@ -25,6 +32,8 @@ public class NPC : MonoBehaviour
     {
 
         dialogues = scriptableNPC.dialogues;
+        currentLine = dialogues[currentIndex];
+
     }
 
 
@@ -32,33 +41,54 @@ public class NPC : MonoBehaviour
     {
         if (playerInProximity && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("ADSDAS");
+            Debug.Log("FFFFFa");
             PickUp();
         }
+
+
     }
+
 
     public virtual void PickUp()
     {
 
         Destroy(gameObject);
-        DisableItemPrompt();
+        DisableNPCPrompt();
     }
 
     public virtual void ShowPrompt()
     {
-        if (PickUpController.Instance != null)
+        if (NPCsController.Instance != null)
         {
-            PickUpController.Instance.ShowItemPrompt(scriptableNPC.name,
-                                                     scriptableNPC.description,
-                                                     scriptableNPC.spriteImg);
+            NPCsController.Instance.ShowNPCPrompt(scriptableNPC.name,
+                                                  scriptableNPC.description,
+                                                  scriptableNPC.spriteImg,
+                                                  dialogues[currentIndex]);
+
+            NPCsController.Instance.getNextButton().onClick.RemoveAllListeners();
+
+            NPCsController.Instance.getNextButton().onClick.AddListener(nextLine);
         }
     }
 
-    public virtual void DisableItemPrompt()
+
+    public void nextLine()
     {
-        if (PickUpController.Instance != null)
+        Debug.Log("You have clicked the button!");
+
+        if (currentIndex < dialogues.Count - 1) 
         {
-            PickUpController.Instance.DisablePrompt();
+            currentIndex++; 
+            NPCsController.Instance.UpdateD(dialogues[currentIndex]); 
+        }
+    }
+
+    public virtual void DisableNPCPrompt()
+    {
+        if (NPCsController.Instance != null)
+        {
+            NPCsController.Instance.DisablePrompt();
+            NPCsController.Instance.getNextButton().onClick.RemoveAllListeners();
         }
     }
 }

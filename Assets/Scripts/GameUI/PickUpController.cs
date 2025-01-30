@@ -93,6 +93,6 @@ public class PickUpController : MonoBehaviour
 
         }
         prompt.SetActive(false);
-
+        cg.alpha = 1f;
     }
 }

@@ -54,6 +54,9 @@ TagManager:
   - name: LowM
     uniqueID: 2045149793
     locked: 0
+  - name: Gate
+    uniqueID: 3381631629
+    locked: 0
   - name: Others
     uniqueID: 2578308067
     locked: 0

@@ -21,6 +21,9 @@ public class NPC : MonoBehaviour
 
     private int questItems;
 
+
+    bool offerReward = false;
+
     public void ChangePickable()
     {
         playerInProximity = !playerInProximity;

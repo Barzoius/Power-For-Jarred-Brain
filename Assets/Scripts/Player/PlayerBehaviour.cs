@@ -13,6 +13,9 @@ public class PlayerBehaviour : MonoBehaviour
     private float jump;
 
     [SerializeField]
+    private int powerCap;
+
+    [SerializeField]
     private int power;
 
     private float move;
@@ -38,6 +41,21 @@ public class PlayerBehaviour : MonoBehaviour
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             power -= 20;
         }
+
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.CompareTag("Battery"))
+        {
+
+            power = powerCap;
+
+            Destroy(collision.gameObject);
+
+        }
+
 
     }
 }

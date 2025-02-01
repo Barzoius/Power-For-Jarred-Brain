@@ -582,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableNPC: {fileID: 11400000, guid: 73f1022a3d69ff14ca8ea383937788a8, type: 2}
+  questFinsihed: 0
 --- !u!1 &431809893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,6 +1879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableNPC: {fileID: 11400000, guid: 5bef38b8552ec0441839b2c82ecb1203, type: 2}
+  questFinsihed: 0
 --- !u!1 &1305174027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,6 +1964,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1311892938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1311892940}
+  - component: {fileID: 1311892939}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1311892939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311892938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4e5b44b29d54a4781bb1c514c449ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1766478876}
+  gate: {fileID: 1902935057}
+  lever: {fileID: 40217786}
+  newPlayerSprite: {fileID: 21300000, guid: 8d47f5a39a594f545aacdfc33e8742c9, type: 3}
+  newOzySprite: {fileID: 21300000, guid: 6334c45b50c127c438924fbc3bee5b52, type: 3}
+  newLeverSprite: {fileID: 21300000, guid: b8a47544211c1134390156933efa7ab4, type: 3}
+  ozy: {fileID: 1269463035}
+  drud: {fileID: 203017112}
+--- !u!4 &1311892940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311892938}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.044197, y: -4.106275, z: -0.034070723}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1326850193
 GameObject:
   m_ObjectHideFlags: 0
@@ -25607,5 +25661,6 @@ SceneRoots:
   - {fileID: 1151992872}
   - {fileID: 1725580927}
   - {fileID: 849308843}
-  - {fileID: 1902935059}
   - {fileID: 40217788}
+  - {fileID: 1311892940}
+  - {fileID: 1902935059}

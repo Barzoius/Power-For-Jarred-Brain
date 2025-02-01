@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,8 +22,7 @@ public class NPC : MonoBehaviour
 
     private int questItems;
 
-
-    bool offerReward = false;
+    public bool questFinsihed;
 
     public void ChangePickable()
     {
@@ -50,6 +50,13 @@ public class NPC : MonoBehaviour
         if (questItems == 0)
         {
             indexCap = scriptableNPC.dialogues.Count - 1;
+        }
+
+
+        if (currentIndex == dialogues.Count - 2)
+        {
+            Debug.Log("Quest Finsihed");
+            questFinsihed = true;
         }
 
     }
@@ -91,6 +98,7 @@ public class NPC : MonoBehaviour
         {
             currentIndex++; 
             NPCsController.Instance.UpdateD(dialogues[currentIndex]); 
+
         }
     }
 

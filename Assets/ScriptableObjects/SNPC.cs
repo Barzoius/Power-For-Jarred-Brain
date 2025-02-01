@@ -16,4 +16,8 @@ public class SNPC : ScriptableObject
 
     public int completionIndex;
 
+    public int questIndex;
+
+    public SQuest quest;
+
 }

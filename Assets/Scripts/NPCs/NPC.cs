@@ -13,11 +13,13 @@ public class NPC : MonoBehaviour
 
     private List<string> dialogues = new List<string>();
 
-    string currentLine;
 
     int currentIndex = 0;
 
-    private Button nextB;
+
+    private int indexCap;
+
+    private int questItems;
 
     public void ChangePickable()
     {
@@ -32,28 +34,34 @@ public class NPC : MonoBehaviour
     {
 
         dialogues = scriptableNPC.dialogues;
-        currentLine = dialogues[currentIndex];
+
+        indexCap = scriptableNPC.completionIndex;
+
+        questItems = scriptableNPC.quest.numItems;
 
     }
 
 
     private void Update()
     {
-        if (playerInProximity && Input.GetKeyDown(KeyCode.E))
+        if (questItems == 0)
         {
-            Debug.Log("FFFFFa");
-            PickUp();
+            indexCap = scriptableNPC.dialogues.Count - 1;
         }
 
-
+    }
+    public bool HasQuest(SQuest quest)
+    {
+        return scriptableNPC.quest == quest;
     }
 
-
-    public virtual void PickUp()
+    public void DecreaseQuestItem()
     {
-
-        Destroy(gameObject);
-        DisableNPCPrompt();
+        if (questItems > 0)
+        {
+            questItems--;  
+            Debug.Log($"NPC {scriptableNPC.name} now has {questItems} items left.");
+        }
     }
 
     public virtual void ShowPrompt()
@@ -76,7 +84,7 @@ public class NPC : MonoBehaviour
     {
         Debug.Log("You have clicked the button!");
 
-        if (currentIndex < dialogues.Count - 1) 
+        if (currentIndex < indexCap - 1) 
         {
             currentIndex++; 
             NPCsController.Instance.UpdateD(dialogues[currentIndex]); 
@@ -88,7 +96,7 @@ public class NPC : MonoBehaviour
         if (NPCsController.Instance != null)
         {
             NPCsController.Instance.DisablePrompt();
-            NPCsController.Instance.getNextButton().onClick.RemoveAllListeners();
+            NPCsController.Instance.getNextButton()?.onClick.RemoveAllListeners();
         }
     }
 }

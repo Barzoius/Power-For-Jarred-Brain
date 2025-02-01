@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField]
-    private Sitem scriptableItem;
+    public Sitem scriptableItem;
 
     SpriteRenderer spriteRenderer;
 
@@ -24,6 +24,7 @@ public class Item : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = scriptableItem.spriteImg;
+
     }
 
 
@@ -31,7 +32,6 @@ public class Item : MonoBehaviour
     {
         if (pickable && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("ADSDAS");
             PickUp();
         }
     }
@@ -39,7 +39,9 @@ public class Item : MonoBehaviour
     public virtual void PickUp()
     {
 
+        QuestManager.Instance.UnregisterItem(this);
         Destroy(gameObject);
+        Debug.Log("PickUp");
         DisableItemPrompt();
     }
 

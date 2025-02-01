@@ -13,10 +13,9 @@ public class PlayerNPCInteract : MonoBehaviour
             NPC npc = collision.GetComponent<NPC>();
 
 
-            if (npc != null)
+            if (npc != null )
             {
-                npc.ChangePickable();
-                npc.ShowPrompt();
+                //npc.ShowPrompt();
             }
 
         }
@@ -38,9 +37,7 @@ public class PlayerNPCInteract : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("DAS");
-                    npc.PickUp();
-
+                    npc.ShowPrompt();
                 }
             }
 
@@ -53,8 +50,6 @@ public class PlayerNPCInteract : MonoBehaviour
         if (collision.CompareTag("NPC"))
         {
             NPC npc = collision.GetComponent<NPC>();
-
-
 
             if (npc != null)
             {

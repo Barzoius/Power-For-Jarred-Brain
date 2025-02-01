@@ -48,6 +48,12 @@ public class EventManager : MonoBehaviour
 
             lever.GetComponent<SpriteRenderer>().sprite = newLeverSprite;
         }
-        
+
+
+        if (drudNPC.questFinsihed == true)
+        {
+            playerSprite.sprite = newPlayerSprite;
+        }
+
     }
 }

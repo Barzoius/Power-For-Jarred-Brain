@@ -15,9 +15,22 @@ MonoBehaviour:
   dialogues:
   - Hi, I'm Drud.
   - Mechanic of craft.
+  - Do you plan on traversing this land?
+  - That engine of yours seems to use a lot of power.
+  - Let me tell you somthing
+  - You do a little job for me and I will hook you up
+  - What do you say
+  - Great, I need you to pick me 3 mushes.
+  - They are brown and smelly. They look like mushrooms but they are flowers.
+  - Good Luck
+  - Ohh you came back
+  - Thank you, they are mi wife's favorites.
+  - Now for your reward.
+  - Here, let me attach these to your chasis.
+  - Doen. Good to go.
   name: Drud
   description: mechnaic
   spriteImg: {fileID: 1385447960, guid: 8506b8c3d61070641bcbd0a7a04a03f1, type: 3}
-  completionIndex: 0
+  completionIndex: 10
   questIndex: 1
   quest: {fileID: 11400000, guid: 9d0c339a529149a4fb6bd9f99939cdaa, type: 2}

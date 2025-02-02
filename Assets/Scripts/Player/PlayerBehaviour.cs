@@ -23,6 +23,10 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody2D rb;
 
 
+    public void ResetPower()
+    {
+        power = powerCap;
+    }
     
     void Start()
     {

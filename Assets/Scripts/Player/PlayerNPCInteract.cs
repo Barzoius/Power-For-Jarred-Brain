@@ -4,59 +4,37 @@ using UnityEngine;
 
 public class PlayerNPCInteract : MonoBehaviour
 {
+    private NPC currentNPC;  // Track the NPC in range
+    private bool isNearNPC = false;
+
+    private void Update()
+    {
+        if (isNearNPC && Input.GetKeyDown(KeyCode.E) && currentNPC != null)
+        {
+            currentNPC.ShowPrompt();
+        }
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("NPC"))
         {
-
-            NPC npc = collision.GetComponent<NPC>();
-
-
-            if (npc != null )
-            {
-                //npc.ShowPrompt();
-            }
-
-        }
-
-
-    }
-
-    public void OnTriggerStay2D(Collider2D collision)
-    {
-
-
-        if (collision.CompareTag("NPC"))
-        {
-
-            NPC npc = collision.GetComponent<NPC>();
-
-
-            if (npc != null)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    npc.ShowPrompt();
-                }
-            }
-
+            currentNPC = collision.GetComponent<NPC>();
+            isNearNPC = true;
         }
     }
-
 
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("NPC"))
         {
-            NPC npc = collision.GetComponent<NPC>();
-
-            if (npc != null)
+            if (currentNPC != null)
             {
-                npc.ChangePickable();
-                npc.DisableNPCPrompt();
-
+                currentNPC.ChangePickable();
+                currentNPC.DisableNPCPrompt();
             }
+            isNearNPC = false;
+            currentNPC = null;
         }
     }
 }

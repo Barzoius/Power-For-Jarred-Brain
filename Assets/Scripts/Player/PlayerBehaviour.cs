@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+
+
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -22,6 +26,20 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [SerializeField]
+    private bool onWheels=false;
+
+    private float powerTimer = 0f;
+
+    private float powerDecreaseInterval = 1f;
+
+    public TMP_Text energyText;
+
+
+    public void GiveWeels()
+    {
+        onWheels = true;
+    }
 
     public void ResetPower()
     {
@@ -34,19 +52,46 @@ public class PlayerBehaviour : MonoBehaviour
     }
     void Update()
     {
+        energyText.text = "Power: " + power;
 
         move = Input.GetAxis("Horizontal");
 
-        rb.velocity = new Vector2(move * speed, rb.velocity.y);
-
-        if(Input.GetButtonDown("Jump") && power > 0)
+        if (power <= 0)
         {
+            gameObject.GetComponent<PlayerManager>().Die();
+        }
+
+        if (onWheels)
+        {
+            rb.velocity = new Vector2(move * speed, rb.velocity.y);
+
+            if (Mathf.Abs(move) > 0.1f) // Ensure the player is moving
+            {
+                powerTimer += Time.deltaTime;
+
+                if (powerTimer >= powerDecreaseInterval)
+                {
+                    power -= 1;
+                    powerTimer = 0f; // Reset timer
+                }
+            }
+            else
+            {
+                powerTimer = 0f; // Reset timer if not moving
+            }
+        }
+
+
+        if (Input.GetButtonDown("Jump") && power > 0)
+        {
+            rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             power -= 20;
         }
 
     }
+
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -60,6 +105,19 @@ public class PlayerBehaviour : MonoBehaviour
 
         }
 
+        if (collision.CompareTag("End"))
+        {
+
+            LoadEndScene();
+        }
+
 
     }
+
+
+    void LoadEndScene()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
+
 }

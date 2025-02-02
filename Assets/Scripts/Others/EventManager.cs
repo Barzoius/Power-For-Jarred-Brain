@@ -53,6 +53,7 @@ public class EventManager : MonoBehaviour
         if (drudNPC.questFinsihed == true)
         {
             playerSprite.sprite = newPlayerSprite;
+            player.GetComponent<PlayerBehaviour>().GiveWeels();
         }
 
     }

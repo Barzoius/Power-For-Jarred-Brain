@@ -10,6 +10,9 @@ public class Background : MonoBehaviour
     public GameObject cam;
     public float parallaxEffect;
 
+    [SerializeField]
+    private float padding = 1f;
+
     void Start()
     {
      
@@ -24,7 +27,7 @@ public class Background : MonoBehaviour
     {
         float distance = (cam.transform.position.x * parallaxEffect);
 
-        float movement = (cam.transform.position.x * (1 - parallaxEffect));
+        float movement = (cam.transform.position.x * (1 - parallaxEffect)) - padding;
 
         transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
 

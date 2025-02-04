@@ -36,6 +36,9 @@ public class PlayerBehaviour : MonoBehaviour
     public TMP_Text energyText;
 
 
+    public AudioSource audioSource;
+
+
     public void GiveWeels()
     {
         onWheels = true;
@@ -49,6 +52,11 @@ public class PlayerBehaviour : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>(); 
+        }
     }
     void Update()
     {
@@ -84,6 +92,9 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && power > 0)
         {
+
+            audioSource.Play();
+
             rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
             rb.AddForce(new Vector2(rb.velocity.x, jump));

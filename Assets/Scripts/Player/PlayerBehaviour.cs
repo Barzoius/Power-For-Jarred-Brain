@@ -39,6 +39,9 @@ public class PlayerBehaviour : MonoBehaviour
     public AudioSource audioSource;
 
 
+    public PowerBar powerBar;
+
+
     public void GiveWeels()
     {
         onWheels = true;
@@ -53,6 +56,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
+        powerBar.SetMaxPower(power);
+
         if (audioSource == null)
         {
             audioSource = GetComponent<AudioSource>(); 
@@ -60,7 +65,9 @@ public class PlayerBehaviour : MonoBehaviour
     }
     void Update()
     {
-        energyText.text = "Power: " + power;
+        energyText.text = "" + power;
+
+        powerBar.SetPower(power);
 
         move = Input.GetAxis("Horizontal");
 
@@ -80,6 +87,7 @@ public class PlayerBehaviour : MonoBehaviour
                 if (powerTimer >= powerDecreaseInterval)
                 {
                     power -= 1;
+                    //powerBar.SetPower(power);
                     powerTimer = 0f; // Reset timer
                 }
             }
@@ -99,6 +107,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             power -= 20;
+            //powerBar.SetPower(power);
         }
 
     }

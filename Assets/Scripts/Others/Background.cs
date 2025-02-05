@@ -10,8 +10,6 @@ public class Background : MonoBehaviour
     public GameObject cam;
     public float parallaxEffect;
 
-    [SerializeField]
-    private float padding = 1f;
 
     void Start()
     {

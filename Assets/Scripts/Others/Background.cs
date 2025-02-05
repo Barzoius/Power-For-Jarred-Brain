@@ -25,17 +25,19 @@ public class Background : MonoBehaviour
  
     void FixedUpdate()
     {
-        float distance = (cam.transform.position.x * parallaxEffect);
+        float distance = ((cam.transform.position.x) * parallaxEffect);
 
-        float movement = (cam.transform.position.x * (1 - parallaxEffect)) - padding;
+        float movement = ((cam.transform.position.x) * (1 - parallaxEffect));
 
         transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
 
-        if (movement > startPos + length)
+        float buffer = 0.5f * length; 
+
+        if (movement > startPos + length - buffer) // Reset earlier
         {
             startPos += length;
         }
-        else if (movement < startPos - length)
+        else if (movement < startPos - length + buffer) // Reset earlier
         {
             startPos -= length;
         }

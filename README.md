@@ -1,4 +1,4 @@
-| <img src="ForRM/BrainICON2.png" width="120px"/> | **Power-For-Jarred-Brain** |
+| <img src="ForRM/BrainICON.png" width="120px"/> | **Power-For-Jarred-Brain** |
 |------------------------------------------------------|--------------------------|
 
  Game for the Bigmode Game Jam 2025
